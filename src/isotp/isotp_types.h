@@ -47,7 +47,7 @@ extern "C" {
 typedef struct {
     uint32_t arbitration_id;
 //    uint8_t payload[OUR_MAX_ISO_TP_MESSAGE_SIZE];
-    uint8_t *payload;
+    const uint8_t *payload;
     uint16_t size;
     bool completed;
     bool multi_frame;
