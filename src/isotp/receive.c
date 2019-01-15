@@ -40,10 +40,10 @@ bool isotp_send_flow_control_frame(IsoTpShims* shims, IsoTpMessage* message) {
 IsoTpReceiveHandle isotp_receive(IsoTpShims* shims,
         const uint32_t arbitration_id, IsoTpMessageReceivedHandler callback) {
     IsoTpReceiveHandle handle = {
-        success: false,
-        completed: false,
-        arbitration_id: arbitration_id,
-        message_received_callback: callback
+        .success = false,
+        .completed = false,
+        .arbitration_id = arbitration_id,
+        .message_received_callback = callback
     };
 
     return handle;
@@ -61,11 +61,11 @@ IsoTpMessage isotp_continue_receive(IsoTpShims* shims,
         IsoTpReceiveHandle* handle, const uint32_t arbitration_id,
         const uint8_t data[], const uint8_t size) {
     IsoTpMessage message = {
-        arbitration_id: arbitration_id,
-        completed: false,
-        multi_frame: false,
-        payload: handle->receive_buffer,
-        size: 0
+        .arbitration_id = arbitration_id,
+        .completed = false,
+        .multi_frame = false,
+        .payload = handle->receive_buffer,
+        .size = 0
     };
 
     if(size < 1) {

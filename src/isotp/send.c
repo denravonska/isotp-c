@@ -19,9 +19,9 @@ IsoTpSendHandle isotp_send_single_frame(IsoTpShims* shims, IsoTpMessage* message
         IsoTpMessageSentHandler callback) {
 	// create the send handle
     IsoTpSendHandle handle = {
-        success: false,
-        completed: true,
-		message_ptr: message
+        .success = false,
+        .completed = true,
+        .message_ptr = message
     };
 
 	// create the CAN frame array
@@ -58,9 +58,9 @@ IsoTpSendHandle isotp_send_multi_frame(IsoTpShims* shims, IsoTpMessage* message,
         IsoTpMessageSentHandler callback) {	
 	// create the send handle - note that completed = false here
     IsoTpSendHandle handle = {
-        success: false,
-        completed: false,
-		message_ptr: message
+        .success = false,
+        .completed = false,
+        .message_ptr = message
     };
 			
 	// create the CAN frame array
@@ -97,8 +97,8 @@ IsoTpSendHandle isotp_send(IsoTpShims* shims, const uint16_t arbitration_id,
         const uint8_t payload[], uint16_t size,
         IsoTpMessageSentHandler callback) {
     IsoTpMessage message = {
-        arbitration_id: arbitration_id,
-        size: size
+        .arbitration_id = arbitration_id,
+        .size = size
     };
 
 	// copy the payload to the message
