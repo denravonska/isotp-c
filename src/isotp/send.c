@@ -101,16 +101,16 @@ IsoTpSendHandle isotp_send(IsoTpShims* shims, const uint16_t arbitration_id,
         .size = size
     };
 
-	// copy the payload to the message
-    message.payload = payload;
-//    memcpy(message.payload, payload, size);
-	
-	// if we can fit entire payload onto one message, send single frame
+  	 // copy the payload to the message. While the incoming payload is const,
+    // we will not modify the data so casting to non-const is safe.
+    message.payload = (uint8_t*) payload;
+
+	 // if we can fit entire payload onto one message, send single frame
     if(size < 8) {
-		return isotp_send_single_frame(shims, &message, callback);}
-	// otherwise we need to send first frame of multi-frame sequencey
-	else {
-		return isotp_send_multi_frame(shims, &message, callback);}
+        return isotp_send_single_frame(shims, &message, callback);}
+	 // otherwise we need to send first frame of multi-frame sequencey
+	 else {
+        return isotp_send_multi_frame(shims, &message, callback);}
 }
 
 // send second frames of multi-frame CAN message
